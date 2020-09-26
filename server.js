@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const dotenv = require('dotenv').config();
 const port = 3000;
 
 
@@ -10,6 +11,8 @@ app.get('/', (req, res) => {
     res.json('Hello, redux World');
 });
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+console.log(process.env.PORT);
+const listener = app.listen(process.env.PORT || port, () => {
+    const serverPort = listener.address().port;
+    console.log(`Example app listening at http://localhost:${serverPort}`);
 });
